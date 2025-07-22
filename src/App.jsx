@@ -2,6 +2,7 @@ import "./App.css";
 import NavBar from "./Components/NavBar";
 
 function App() {
+  //console.log(import.meta.env.VITE_APPWRITE_URL);
   return (
     <>
       <NavBar />
