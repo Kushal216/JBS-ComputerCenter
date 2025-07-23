@@ -1,7 +1,7 @@
 import "./App.css";
 import Footer from "./Components/Footer";
 import NavBar from "./Components/NavBar";
-import Home from "./Components/Home";
+import Home from "./Components/Home/Home";
 import Product from "./Components/Products/Product";
 import About from "./Components/About";
 import Courses from "./Components/Courses";
@@ -11,13 +11,13 @@ function App() {
   //console.log(import.meta.env.VITE_APPWRITE_URL);
   return (
     <>
-      <NavBar />
+      {/*<NavBar />
       <Home />
       <Product />
       <About />
       <Courses />
       <Contact />
-      <Footer />
+      <Footer />*/}
     </>
   );
 }

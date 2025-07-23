@@ -1,14 +1,26 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function Footer() {
+  const items = [
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
+    { name: "Courses", path: "/courses" },
+    { name: "Forms", path: "/forms" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+  ];
   return (
     <footer className="bg-[#EAE9FF] text-sm text-gray-700 mt-0 pt-10 pb-6 px-6">
       <div className="flex flex-col md:flex-row justify-between gap-10">
         {/* Left: Brand and Description */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
-            <img src="/images/logo.png" alt="Logo" className="h-8" />
-            <h2 className="text-xl font-bold text-blue-700">JBS & Computer Center</h2>
+            <Link to="/" className="flex items-center">
+              <img src="/images/logo.png" alt="Logo" className="h-8" />
+              <h2 className="text-xl font-bold text-blue-700 pl-2">
+                JBS & Computer Center
+              </h2>
+            </Link>
           </div>
           <p className="max-w-sm text-gray-600">
             Your one-stop solution for stationery, educational courses, and
@@ -19,13 +31,15 @@ function Footer() {
         {/* Middle: Navigation Links */}
         <div>
           <h3 className="font-semibold mb-2 text-blue-700">Quick Links</h3>
-          <ul className="grid grid-cols-2 gap-y-1 gap-x-6 text-sm">
-            <li className="hover:underline cursor-pointer">Home</li>
-            <li className="hover:underline cursor-pointer">Products</li>
-            <li className="hover:underline cursor-pointer">Courses</li>
-            <li className="hover:underline cursor-pointer">Forms</li>
-            <li className="hover:underline cursor-pointer">About</li>
-            <li className="hover:underline cursor-pointer">Contact</li>
+          <ul className="gap-5 font-medium list-none grid grid-cols-2 gap-y-1 gap-x-6 text-sm">
+            {items.map((item) => (
+              <li
+                key={item.name}
+                className="hover:underline hover:font-semibold hover:text-blue-600 cursor-pointer"
+              >
+                <Link to={item.path}>{item.name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 

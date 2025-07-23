@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaPrint, FaBoxOpen, FaClipboardList } from "react-icons/fa";
 
 function HomePage() {
@@ -37,13 +38,13 @@ function HomePage() {
       <section className="bg-[#060540] text-white py-12 px-6 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {/* Card 1 */}
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-3  hover:cursor-pointer">
             <FaPrint className="text-3xl text-white" />
             <h4 className="font-semibold text-lg">Printing</h4>
             <p className="text-sm text-gray-300 max-w-xs">
               Browse among our best quality stationery items.
             </p>
-            <button className="mt-4 px-4 py-1 border rounded-full border-white text-white hover:bg-white hover:text-black transition">
+            <button className="mt-4 px-4 py-1 border rounded-full border-white text-white hover:bg-white hover:text-black transition ">
               Learn More
             </button>
           </div>

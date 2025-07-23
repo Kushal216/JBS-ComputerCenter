@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import "@fontsource/poppins";
 
 function JoinButton() {
@@ -11,18 +12,26 @@ function JoinButton() {
 
 function NavBar() {
   const [search, setSearch] = useState("");
-  const [activeLink, setActiveLink] = useState("Products"); // Default active
 
-  const navItems = ["Home", "Products", "Courses", "Forms", "About", "Contact"];
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
+    { name: "Courses", path: "/courses" },
+    { name: "Forms", path: "/forms" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   return (
     <nav className="flex flex-wrap items-center justify-between p-5 bg-[#EAE9FF]">
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <img src="/images/logo.png" alt="Logo" className="h-10" />
-        <h1 className="text-2xl font-bold font-poppins text-blue-600">
-          JBS & Computer Center
-        </h1>
+        <Link to="/" className="flex items-center">
+          <img src="/images/logo.png" alt="Logo" className="h-10" />
+          <h1 className="text-2xl font-bold font-poppins text-blue-600 pl-2">
+            JBS & Computer Center
+          </h1>
+        </Link>
       </div>
 
       {/* Search Bar */}
@@ -41,16 +50,17 @@ function NavBar() {
       <div className="flex items-center gap-6 mt-3 md:mt-0">
         <ul className="flex gap-4 text-sm font-medium list-none">
           {navItems.map((item) => (
-            <li
-              key={item}
-              onClick={() => setActiveLink(item)}
-              className={`cursor-pointer ${
-                activeLink === item
-                  ? "text-blue-600 underline font-semibold"
-                  : ""
-              }`}
-            >
-              {item}
+            <li key={item.name}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `cursor-pointer ${
+                    isActive ? "text-blue-600 underline font-semibold" : ""
+                  }`
+                }
+              >
+                {item.name}
+              </NavLink>
             </li>
           ))}
         </ul>

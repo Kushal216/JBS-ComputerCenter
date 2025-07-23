@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const sampleProducts = new Array(6).fill({
   title: "DOMS ultra black Pencil Box",
   description: "12 HB dark 5 mm",

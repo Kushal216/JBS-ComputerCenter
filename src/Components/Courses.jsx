@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const courses = [
   {
@@ -14,7 +15,7 @@ const courses = [
       "Printing, Photocopy and Scanning",
     ],
     duration: "3 Months",
-    price: "Nrs. 300/-",
+    price: "Nrs. 3000/-",
     image: "/images/computer-course.png", // Placeholder image
   },
   {
