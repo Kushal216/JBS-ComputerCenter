@@ -52,11 +52,11 @@ function Footer() {
             Get updates on new products and offers.
           </p>
           <div className="flex items-center border border-gray-400 rounded-full px-3 py-1 bg-white">
-            <input
+            {/* <input
               type="email"
               placeholder="Enter your email"
               className="flex-grow outline-none bg-transparent text-sm px-2"
-            />
+            /> */}
             <button className="text-white bg-[#0011FF] px-3 py-1.5 rounded-full text-xs">
               Subscribe
             </button>

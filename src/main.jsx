@@ -2,36 +2,65 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Layout from "./Components/Layout.jsx";
-import HomePage from "./Components/Home/Home.jsx";
-import ProductsSection from "./Components/Products/Product.jsx";
-import CoursesSection from "./Components/Courses.jsx";
-import Forms from "./Components/Forms.jsx";
-import AboutUs from "./Components/About.jsx";
-import ContactSection from "./Components/Contact.jsx";
+
+import { Provider } from "react-redux";
+import store from "./Store/store.js";
+
+import {
+  AuthLayout,
+  Home,
+  Product,
+  Courses,
+  Forms,
+  About,
+  Contact,
+  Services,
+  Login,
+  SignUp,
+} from "./Components/index.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route path="" element={<HomePage />} />
-      <Route path="products" element={<ProductsSection />} />
-      <Route path="courses" element={<CoursesSection />} />
+    <Route path="/" element={<App />}>
+      <Route index element={<Home />} />
+      <Route path="products" element={<Product />} />
+      <Route path="courses" element={<Courses />} />
       <Route path="forms" element={<Forms />} />
-      <Route path="about" element={<AboutUs />} />
-      <Route path="contact" element={<ContactSection />} />
+      <Route
+        path="login"
+        element={
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="signup"
+        element={
+          <AuthLayout authentication={false}>
+            <SignUp />
+          </AuthLayout>
+        }
+      />
+      <Route path="about" element={<About />} />
+      <Route path="services" element={<Services />} />
+      <Route path="contact" element={<Contact />} />
+      <Route path="*" element={<div>404 Not Found</div>} />
     </Route>
   )
 );
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

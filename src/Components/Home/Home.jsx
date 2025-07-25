@@ -1,8 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+//import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPrint, FaBoxOpen, FaClipboardList } from "react-icons/fa";
+import Card from "./Card";
 
 function HomePage() {
+  //const [show, setShow] = useState(false);
+  const nevigate = useNavigate();
+
+  const goToServices = () => {
+    nevigate("/services");
+  };
+
   return (
     <div className="mb-0">
       {/* Hero Section */}
@@ -18,7 +26,10 @@ function HomePage() {
               <br className="hidden md:block" />
               and engaging courses.
             </p>
-            <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition">
+            <button
+              className="bg-black text-white text-2xl  px-7 pb-2  pt-1 rounded-full hover:bg-gray-800 transition"
+              onClick={goToServices}
+            >
               Explore our services →
             </button>
           </div>

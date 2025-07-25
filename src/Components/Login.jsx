@@ -1,27 +1,42 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { login as authLogin } from "../Store/authSlice";
 import authService from "../Appwrite/auth";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import Button from "./Button";
 import Input from "./Input";
-import { login } from "../Store/authSlice";
-import { useDispatch } from "react-redux";
 import Logo from "./Logo";
-function SignUp() {
+
+function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [error, setError] = useState("");
-  const createAccount = async (data) => {
+  const [loading, setLoading] = useState(false);
+
+  const login = async (data) => {
+    setError("");
+    setLoading(true);
     try {
-      const userData = await authService.createAccount(data);
-      if (userData) {
-        const userData = authService.getCurrentUser();
-        if (userData) dispatch(login(userData));
-        navigate("/");
+      const session = await authService.login(data);
+      if (session) {
+        const userData = await authService.getCurrentUser();
+        if (userData) {
+          dispatch(authLogin(userData));
+          navigate("/");
+        } else {
+          throw new Error("Failed to fetch user data");
+        }
       }
     } catch (error) {
-      setError(error.message);
+      setError(error.message || "Login failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,49 +50,36 @@ function SignUp() {
           </span>
         </div>
 
-        {/* Heading */}
         <h2 className="text-center text-2xl font-bold text-blue-700 font-poppins">
-          Sign up to register your account
+          Sign in to your account
         </h2>
 
-        {/* Subtext */}
         <p className="mt-2 text-center text-sm text-gray-600 font-poppins">
-          Already have an account?&nbsp;
+          Don't have an account?&nbsp;
           <Link
-            to="/login"
+            to="/signup"
             className="font-semibold text-blue-600 hover:underline"
           >
-            Sign In
+            Sign Up
           </Link>
         </p>
 
-        {/* Error message */}
         {error && (
           <p className="text-red-600 mt-6 text-center font-medium">{error}</p>
         )}
 
-        {/* Form */}
-        <form onSubmit={handleSubmit(createAccount)} className="mt-8">
+        <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">
-            <Input
-              label="Name"
-              placeholder="Enter your Full Name"
-              type="text"
-              {...register("name", {
-                required: true,
-              })}
-            />
-
             <Input
               label="Email"
               placeholder="Enter your email"
               type="email"
+              error={errors.email?.message}
               {...register("email", {
-                required: true,
-                validate: {
-                  matchPattern: (value) =>
-                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                    "Email address must be valid",
+                required: "Email is required",
+                pattern: {
+                  value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                  message: "Invalid email address",
                 },
               })}
             />
@@ -86,17 +88,24 @@ function SignUp() {
               label="Password"
               type="password"
               placeholder="Enter your password"
+              error={errors.password?.message}
               {...register("password", {
-                required: true,
+                required: "Password is required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
               })}
             />
 
             <Button
-              //onSubmit={navigate("/")}
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+              disabled={loading}
+              className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold ${
+                loading ? "opacity-70 cursor-not-allowed" : ""
+              }`}
             >
-              Sign In
+              {loading ? "Signing In..." : "Sign In"}
             </Button>
           </div>
         </form>
@@ -105,4 +114,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Login;

@@ -1,4 +1,4 @@
-import conf from "../config/config.js";
+import conf from "../config/config";
 import { Client, ID, Storage, Query, Databases } from "appwrite";
 
 export class Service {
@@ -72,8 +72,46 @@ export class Service {
             return false
         }
     }
+    async getAllProducts() {
+        try {
+            return await this.databases.listDocuments(conf.appwriteDatabaseId, conf.appwriteCollectionId)
+        } catch (error) {
+            console.error("Getting all products failed:", error);
+            return false
+        }
+    }
+    //file upload service 
+    async uploadProduct(product) {
+        try {
+            return await this.bucket.addProduct(
+                conf.appwriteBucketId,
+                ID.unique(),
+                product
+            )
+        } catch (error) {
+            console.error("Uploading product failed:", error);
+            return false
+        }
+    }
+    //deleteProduct
+    async removeProduct(productId) {
+        try {
+            return await this.bucket.deleteProduct(
+                conf.appwriteBucketId,
+                productId
+            )
+        } catch (error) {
+            console.error("Deleting product failed:", error);
+            return false
+        }
+    }
+    getProductPreview(productId) {
+        return this.bucket.getProductPreview(
+            conf.appwriteBucketId,
+            productId
+        )
+    }
 
 }
-
 const service = new Service()
 export default service

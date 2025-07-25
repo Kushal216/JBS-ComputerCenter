@@ -41,7 +41,7 @@ const HorizontalCoursesSection = () => {
       highlights: [
         "Advanced Office Applications",
         "Tally Accounting Software",
-        "HTML Web Development"
+        "HTML Web Development"  
       ],
       totalTopics: 11,
       imageColor: "bg-purple-100",
