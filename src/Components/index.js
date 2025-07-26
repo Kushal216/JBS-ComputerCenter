@@ -1,6 +1,4 @@
 import NavBar from "./Header/NavBar"
-import LogOutBtn from "./Header/LogOutBtn"
-import Container from './Container/Conta'
 import Footer from "./Footer/Footer"
 import Home from './Home/Home'
 import ProductCard from './Products/ProductCard'
@@ -23,8 +21,6 @@ export {
     NavBar,
     ProductCard,
     Product,
-    LogOutBtn,
-    Container,
     Footer,
     Home,
     About,

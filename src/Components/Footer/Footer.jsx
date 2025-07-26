@@ -1,5 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  FaFacebookF,
+  FaWhatsapp,
+  FaInstagram,
+  FaEnvelope,
+} from "react-icons/fa";
+
 function Footer() {
   const items = [
     { name: "Home", path: "/" },
@@ -9,11 +16,12 @@ function Footer() {
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
+
   return (
     <footer className="bg-[#EAE9FF] text-sm text-gray-700 mt-0 pt-10 pb-6 px-6">
       <div className="flex flex-col md:flex-row justify-between gap-10">
         {/* Left: Brand and Description */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2">
             <Link to="/" className="flex items-center">
               <img src="/images/logo.png" alt="Logo" className="h-8" />
@@ -26,6 +34,34 @@ function Footer() {
             Your one-stop solution for stationery, educational courses, and
             resources.
           </p>
+
+          {/* Social Media Icons */}
+          <div className="flex gap-4 mt-2 text-xl text-blue-700">
+            <a
+              href="https://www.facebook.com/profile.php?id=61574893107735"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF className="hover:text-blue-500 transition" />
+            </a>
+            <a
+              href="https://wa.me/+977-9842288894"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaWhatsapp className="hover:text-green-500 transition" />
+            </a>
+            <a
+              href="https://instagram.com/jbs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="hover:text-pink-500 transition" />
+            </a>
+            <a href="mailto:jbooks2024@gmail.com">
+              <FaEnvelope className="hover:text-red-500 transition" />
+            </a>
+          </div>
         </div>
 
         {/* Middle: Navigation Links */}
@@ -52,11 +88,11 @@ function Footer() {
             Get updates on new products and offers.
           </p>
           <div className="flex items-center border border-gray-400 rounded-full px-3 py-1 bg-white">
-            {/* <input
+            <input
               type="email"
               placeholder="Enter your email"
               className="flex-grow outline-none bg-transparent text-sm px-2"
-            /> */}
+            />
             <button className="text-white bg-[#0011FF] px-3 py-1.5 rounded-full text-xs">
               Subscribe
             </button>

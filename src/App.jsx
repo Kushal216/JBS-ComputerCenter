@@ -39,10 +39,10 @@ function App() {
 
   return (
     <>
+      {/* <main className="min-h-screen"> */}
       <NavBar />
-      <main className="min-h-screen">
         <Outlet />
-      </main>
+    
       <Footer />
     </>
   );

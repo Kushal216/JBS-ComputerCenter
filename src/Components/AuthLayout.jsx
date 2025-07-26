@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-function Protected({ children, authentication = true }) {
-  const navigate = useNavigate();
-  const [loaader, setLoadder] = useState();
+function AuthLayout({ children }) {
   const authStatus = useSelector((state) => state.auth.status);
 
-  useEffect(() => {
-    // if (authStatus === true) {
-    //   navigate("/");
-    // } else if (authStatus === false) {
-    //   navigate("/login");
-    // }
+  // If already logged in, redirect to home (or dashboard)
+  if (authStatus) {
+    return <Navigate to="/" replace />;
+  }
 
-    if (authentication && authStatus !== authentication) {
-      navigate("/login");
-    } else if (!authentication && authStatus !== authentication) {
-      navigate("/");
-    }
-    setLoadder(false);
-  }, [authStatus, navigate, authentication]);
-
-  return loaader ? <h1>loading....</h1> : <>{children}</>;
+  // Else show login/signup page
+  return (
+    <section className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
+        {children}
+      </div>
+    </section>
+  );
 }
 
-export default Protected;
+export default AuthLayout;

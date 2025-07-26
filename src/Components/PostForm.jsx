@@ -2,8 +2,8 @@ import React, { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import firebaseService from "../Firebase/configuration";
-import Input from "../Components/Input"; // Adjust import paths as needed
+import firebaseService from "../Firebase/configuration"; // Make sure this has uploadProduct, removeProduct, addProduct, updateProduct
+import Input from "../Components/Input";
 import RTE from "../Components/RTE";
 import Button from "../Components/Button";
 
@@ -12,7 +12,7 @@ function PostForm({ post }) {
     useForm({
       defaultValues: {
         productName: post?.productName || "",
-        productId: post?.id || "", // Firebase doc ID
+        productId: post?.productId || "",
         description: post?.description || "",
         price: post?.price || "",
       },
@@ -21,16 +21,18 @@ function PostForm({ post }) {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
 
+  // Auto-generate slug for productId
   const slugTransform = useCallback((value) => {
     return value
       ? value
           .trim()
           .toLowerCase()
           .replace(/[^a-zA-Z\d\s]+/g, "-")
-          .replace(/\s/g, "-")
+          .replace(/\s+/g, "-")
       : "";
   }, []);
 
+  // Watch product name to update productId (slug)
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "productName") {
@@ -42,48 +44,39 @@ function PostForm({ post }) {
     return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
 
+  // Form submit logic
   const submit = async (data) => {
     try {
-      if (post) {
-        let fileUrl = post.image;
+      let fileUrl = post?.image || "";
 
-        if (data.image && data.image[0]) {
-          fileUrl = await firebaseService.uploadProduct(data.image[0]);
-          if (post.image) {
-            await firebaseService.removeProduct(post.image);
-          }
-        }
-
-        const updated = await firebaseService.updateProduct(post.id, {
-          productName: data.productName,
-          productId: data.productId,
-          description: data.description,
-          price: Number(data.price),
-          image: fileUrl,
-        });
-
-        if (updated) {
-          navigate(`/post/${post.id}`);
-        }
-      } else {
-        if (data.image && data.image[0]) {
-          const fileUrl = await firebaseService.uploadProduct(data.image[0]);
-          const newDocId = await firebaseService.addProduct({
-            productName: data.productName,
-            productId: data.productId,
-            description: data.description,
-            price: Number(data.price),
-            image: fileUrl,
-            userId: userData?.uid,
-          });
-
-          if (newDocId) {
-            navigate(`/post/${newDocId}`);
-          }
+      if (data.image && data.image[0]) {
+        fileUrl = await firebaseService.uploadProduct(data.image[0]);
+        if (post?.image) {
+          await firebaseService.removeProduct(post.image);
         }
       }
+
+      const productData = {
+        productName: data.productName,
+        productId: data.productId,
+        description: data.description,
+        price: Number(data.price),
+        image: fileUrl,
+        userId: userData?.uid,
+      };
+
+      if (post) {
+        const updated = await firebaseService.updateProduct(
+          post.id,
+          productData
+        );
+        if (updated) navigate(`/post/${post.id}`);
+      } else {
+        const newDocId = await firebaseService.addProduct(productData);
+        if (newDocId) navigate(`/post/${newDocId}`);
+      }
     } catch (error) {
-      console.error("Submit product error:", error);
+      console.error("Submit product error:", error.message);
     }
   };
 
@@ -93,14 +86,14 @@ function PostForm({ post }) {
       <div className="w-full md:w-2/3 px-2">
         <Input
           label="Product Name:"
-          placeholder="Product Name"
+          placeholder="Enter product name"
           className="mb-4"
           {...register("productName", { required: true })}
         />
 
         <Input
-          label="Product ID:"
-          placeholder="Product ID"
+          label="Product ID (auto-generated):"
+          placeholder="product-id"
           className="mb-4"
           {...register("productId", { required: true })}
         />
@@ -119,30 +112,31 @@ function PostForm({ post }) {
           label="Featured Image:"
           type="file"
           className="mb-4"
-          accept="image/png, image/jpg, image/jpeg, image/gif"
+          accept="image/png, image/jpeg, image/jpg, image/webp"
           {...register("image", { required: !post })}
         />
 
         {post?.image && (
-          <div className="w-full mb-4">
+          <div className="mb-4">
             <img
               src={post.image}
               alt={post.productName}
-              className="rounded-lg"
+              className="rounded-lg w-full"
             />
           </div>
         )}
 
         <Input
-          label="Price:"
+          label="Price (in NPR):"
           type="number"
+          placeholder="Enter price"
           className="mb-4"
           {...register("price", { required: true })}
         />
 
         <Button
           type="submit"
-          bgColor={post ? "bg-green-500" : "bg-blue-600"}
+          bgColor={post ? "bg-green-600" : "bg-blue-600"}
           className="w-full"
         >
           {post ? "Update Product" : "Submit Product"}
