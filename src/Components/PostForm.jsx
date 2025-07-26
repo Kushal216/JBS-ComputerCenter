@@ -2,18 +2,17 @@ import React, { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import appwriteService from "../Appwrite/configuration";
-import Input from "../Components/Input"; // assuming path
-import RTE from "../Components/RTE"; // assuming path
-import Button from "../Components/Button"; // assuming path
+import firebaseService from "../Firebase/configuration";
+import Input from "../Components/Input"; // Adjust import paths as needed
+import RTE from "../Components/RTE";
+import Button from "../Components/Button";
 
 function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
-        title: post?.title || "",
-        productId: post?.$id || "",
         productName: post?.productName || "",
+        productId: post?.id || "", // Firebase doc ID
         description: post?.description || "",
         price: post?.price || "",
       },
@@ -35,7 +34,7 @@ function PostForm({ post }) {
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "productName") {
-        setValue("ProductId", slugTransform(value.productName), {
+        setValue("productId", slugTransform(value.productName), {
           shouldValidate: true,
         });
       }
@@ -44,27 +43,47 @@ function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   const submit = async (data) => {
-    if (post) {
-      let file;
-      if (data.image[0]) {
-        file = await appwriteService.updateProduct(data.image[0]);
-        await appwriteService.deleteProduct(post.image);
-      }
-      const dbPost = await appwriteService.updateProduct(post.$id, {
-        ...data,
-        image: file ? file.$id : post.image,
-      });
-      if (dbPost) navigate(`/post/${dbPost.$id}`);
-    } else {
-      const file = await appwriteService.uploadProduct(data.image[0]);
-      if (file) {
-        const dbPost = await appwriteService.addProduct({
-          ...data,
-          image: file.$id,
-          userId: userData?.$id,
+    try {
+      if (post) {
+        let fileUrl = post.image;
+
+        if (data.image && data.image[0]) {
+          fileUrl = await firebaseService.uploadProduct(data.image[0]);
+          if (post.image) {
+            await firebaseService.removeProduct(post.image);
+          }
+        }
+
+        const updated = await firebaseService.updateProduct(post.id, {
+          productName: data.productName,
+          productId: data.productId,
+          description: data.description,
+          price: Number(data.price),
+          image: fileUrl,
         });
-        if (dbPost) navigate(`/post/${dbPost.$id}`);
+
+        if (updated) {
+          navigate(`/post/${post.id}`);
+        }
+      } else {
+        if (data.image && data.image[0]) {
+          const fileUrl = await firebaseService.uploadProduct(data.image[0]);
+          const newDocId = await firebaseService.addProduct({
+            productName: data.productName,
+            productId: data.productId,
+            description: data.description,
+            price: Number(data.price),
+            image: fileUrl,
+            userId: userData?.uid,
+          });
+
+          if (newDocId) {
+            navigate(`/post/${newDocId}`);
+          }
+        }
       }
+    } catch (error) {
+      console.error("Submit product error:", error);
     }
   };
 
@@ -107,7 +126,7 @@ function PostForm({ post }) {
         {post?.image && (
           <div className="w-full mb-4">
             <img
-              src={appwriteService.getProductPreview(post.image)}
+              src={post.image}
               alt={post.productName}
               className="rounded-lg"
             />

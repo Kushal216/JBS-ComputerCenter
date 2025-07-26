@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import authService from "../Appwrite/auth";
+import authService from "../Firebase/auth";
 import Button from "./Button";
 import Input from "./Input";
 import { login } from "../Store/authSlice";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ProductCard } from "../index"; // Adjust path if needed
-import appwriteService from "../../Appwrite/configuration"; // Make sure this points to the right service
+import appwriteService from "../../Firebase/configuration"; // Make sure this points to the right service
 
 const ProductsSection = () => {
   const [products, setProducts] = useState([]);

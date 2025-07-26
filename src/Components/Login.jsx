@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../Store/authSlice";
-import authService from "../Appwrite/auth";
+import authService from "../Firebase/auth";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Button from "./Button";

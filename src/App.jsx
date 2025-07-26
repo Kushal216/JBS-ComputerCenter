@@ -3,39 +3,45 @@ import Footer from "./Components/Footer/Footer";
 import NavBar from "./Components/Header/NavBar";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import authService from "./Appwrite/auth";
+import authService from "./Firebase/auth"; // Firebase Auth service
 import { login, logOut } from "./Store/authSlice";
-import { Outlet } from "react-router-dom"; // ⬅️ Required for nested routing
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    authService
-      .getCurrentUser()
-      .then((userData) => {
-        if (userData) {
-          dispatch(login({ userData }));
-        } else {
-          dispatch(logOut());
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to fetch user:", err);
+    const unsubscribe = authService.getCurrentUser((user) => {
+      if (user) {
+        // Serialize only required user fields to avoid Redux warnings
+        dispatch(
+          login({
+            userData: {
+              uid: user.uid,
+              email: user.email,
+              displayName: user.displayName,
+              photoURL: user.photoURL,
+              emailVerified: user.emailVerified,
+            },
+          })
+        );
+      } else {
         dispatch(logOut());
-      })
-      .finally(() => setLoading(false));
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe(); // Cleanup listener on unmount
   }, [dispatch]);
 
-  if (loading) return null;
+  if (loading) return <div className="text-center p-8">Loading...</div>; // Or a spinner component
 
   return (
     <>
       <NavBar />
       <main className="min-h-screen">
-        <Outlet />{" "}
-        
+        <Outlet />
       </main>
       <Footer />
     </>
