@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
@@ -8,6 +8,44 @@ import {
 } from "react-icons/fa";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      alert("Please enter your email.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(import.meta.env.VITE_SHEET_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({ email }),
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        alert("✅ Thank you for subscribing!");
+        setEmail("");
+      } else {
+        alert("❌ Subscription failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Subscription error:", error);
+      alert("⚠️ Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const items = [
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
@@ -45,7 +83,7 @@ function Footer() {
               <FaFacebookF className="hover:text-blue-500 transition" />
             </a>
             <a
-              href="https://wa.me/+977-9842288894"
+              href="https://wa.me/9779842288894"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -87,16 +125,26 @@ function Footer() {
           <p className="text-gray-600 mb-2">
             Get updates on new products and offers.
           </p>
-          <div className="flex items-center border border-gray-400 rounded-full px-3 py-1 bg-white">
+          <form
+            onSubmit={handleSubscribe}
+            className="flex items-center border border-gray-400 rounded-full px-3 py-1 bg-white"
+          >
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="flex-grow outline-none bg-transparent text-sm px-2"
+              required
             />
-            <button className="text-white bg-[#0011FF] px-3 py-1.5 rounded-full text-xs">
-              Subscribe
+            <button
+              type="submit"
+              className="text-white bg-[#0011FF] px-3 py-1.5 rounded-full text-xs hover:bg-blue-800 transition"
+              disabled={loading}
+            >
+              {loading ? "Subscribing..." : "Subscribe"}
             </button>
-          </div>
+          </form>
         </div>
       </div>
 

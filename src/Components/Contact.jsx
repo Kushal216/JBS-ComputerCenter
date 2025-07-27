@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 // Contact Info
 const contactInfo = {
@@ -21,35 +22,39 @@ const ContactSection = () => {
     message: "",
   });
 
-  // 🔁 Handle Input Changes
+  const [loading, setLoading] = useState(false);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 📤 Placeholder for database submission
-  const submitFormToDatabase = async (data) => {
-    try {
-      //Example: Send to your backend here
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      console.log("Form sent to DB:", data);
-      alert("Message sent successfully!");
-    } catch (error) {
-      console.error("Error sending form:", error);
-      alert("Something went wrong!");
-    }
-  };
-
-  // ✅ Handle Form Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await submitFormToDatabase(formData);
-    setFormData({ name: "", email: "", message: "" });
+    setLoading(true);
+
+    emailjs
+      .send(
+        import.meta.env.VITE_SERVICE_ID_EMAILJS, // Replace with your actual Service ID
+        import.meta.env.VITE_TEMPLATE_ID_EMAILJS, // Replace with your actual Template ID .env
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        import.meta.env.VITE_PUBLIC_KEY_EMAILJS // Replace with your actual Public Key
+      )
+      .then(
+        () => {
+          alert("Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          console.error(error.text);
+          alert("Failed to send message. Please try again.");
+        }
+      )
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -64,7 +69,7 @@ const ContactSection = () => {
           Get in Touch with Us
         </h2>
 
-        {/* 📞 Contact Details */}
+        {/* Contact Details */}
         <div className="flex flex-col items-center space-y-6 mb-12">
           <div className="flex items-center space-x-3">
             <FaMapMarkerAlt className="w-6 h-6 text-blue-600" />
@@ -103,7 +108,7 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* 📧 Contact Form */}
+        {/* Contact Form */}
         <div className="max-w-lg mx-auto">
           <h3 className="text-xl font-semibold text-gray-800 mb-6">
             Send Us a Message
@@ -138,9 +143,10 @@ const ContactSection = () => {
             ></textarea>
             <button
               type="submit"
+              disabled={loading}
               className="bg-blue-600 text-white text-md font-semibold rounded-full px-6 py-2 hover:bg-blue-700 transition w-full"
             >
-              Send Message
+              {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
         </div>

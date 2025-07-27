@@ -6,10 +6,10 @@ function AuthToggleButton({ authStatus, onLogout }) {
 
   const handleClick = () => {
     if (authStatus) {
-      // If logged in, trigger logout
-      onLogout(); // This should clear your auth state
+      
+      onLogout(); 
     } else {
-      // If logged out, navigate to login page
+     
       navigate("/login");
     }
   };

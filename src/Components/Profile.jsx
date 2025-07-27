@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logOut as logout } from "../Store/authSlice"; // adjust path if needed
+import { logOut as logout } from "../Store/authSlice"; 
 
 function Profile() {
   const user = useSelector((state) => state.auth.userData);
@@ -10,7 +10,7 @@ function Profile() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/login"); // redirect after logout
+    navigate("/login"); 
   };
 
   if (!user) {
