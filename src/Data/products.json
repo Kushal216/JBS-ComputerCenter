@@ -1,0 +1,177 @@
+[
+  {
+    "ProductId": 26,
+    "ProductName": "Sticky Note Cube",
+    "description": "Colorful cube sticky notes for daily memos.",
+    "price": 85,
+    "image": "https://cdn.pixabay.com/photo/2017/05/19/00/46/sticky-note-2321537_960_720.jpg"
+  },
+  {
+    "ProductId": 27,
+    "ProductName": "Mechanical Pencil",
+    "description": "Refillable 0.5mm mechanical pencil.",
+    "price": 55,
+    "image": "https://cdn.pixabay.com/photo/2016/03/27/22/22/pencil-1283958_960_720.jpg"
+  },
+  {
+    "ProductId": 28,
+    "ProductName": "Push Pins",
+    "description": "Box of 100 multicolor push pins.",
+    "price": 30,
+    "image": "https://cdn.pixabay.com/photo/2014/12/29/15/43/pin-583665_960_720.jpg"
+  },
+  {
+    "ProductId": 29,
+    "ProductName": "Label Maker",
+    "description": "Handheld label printer for office labeling.",
+    "price": 899,
+    "image": "https://cdn.pixabay.com/photo/2015/08/14/11/04/label-printer-888759_960_720.jpg"
+  },
+  {
+    "ProductId": 30,
+    "ProductName": "Laminating Sheets",
+    "description": "Pack of 100 A4 laminating pouches.",
+    "price": 240,
+    "image": "https://cdn.pixabay.com/photo/2020/07/20/13/32/plastic-5424233_960_720.jpg"
+  },
+  {
+    "ProductId": 31,
+    "ProductName": "Desk Calendar",
+    "description": "2025 standing desk calendar.",
+    "price": 130,
+    "image": "https://cdn.pixabay.com/photo/2018/01/23/20/57/calendar-3108194_960_720.jpg"
+  },
+  {
+    "ProductId": 32,
+    "ProductName": "Document Tray",
+    "description": "3-tier steel mesh document tray.",
+    "price": 350,
+    "image": "https://cdn.pixabay.com/photo/2018/02/03/16/00/desk-3125104_960_720.jpg"
+  },
+  {
+    "ProductId": 33,
+    "ProductName": "Pen Stand",
+    "description": "Rotating pen stand with compartments.",
+    "price": 140,
+    "image": "https://cdn.pixabay.com/photo/2015/06/19/20/13/pencil-815292_960_720.jpg"
+  },
+  {
+    "ProductId": 34,
+    "ProductName": "Sticky Page Flags",
+    "description": "Color-coded sticky flags for notes.",
+    "price": 35,
+    "image": "https://cdn.pixabay.com/photo/2015/05/12/08/51/notepad-763342_960_720.jpg"
+  },
+  {
+    "ProductId": 35,
+    "ProductName": "Craft Paper Set",
+    "description": "Pack of 30 sheets multicolor craft paper.",
+    "price": 120,
+    "image": "https://cdn.pixabay.com/photo/2016/11/21/16/05/paper-1846031_960_720.jpg"
+  },
+  {
+    "ProductId": 36,
+    "ProductName": "Binder File",
+    "description": "Ring binder file with 2-inch capacity.",
+    "price": 95,
+    "image": "https://cdn.pixabay.com/photo/2014/12/21/23/41/folder-575395_960_720.png"
+  },
+  {
+    "ProductId": 37,
+    "ProductName": "Presentation File",
+    "description": "A4 20-pocket transparent file.",
+    "price": 65,
+    "image": "https://cdn.pixabay.com/photo/2017/06/02/18/24/folder-2367532_960_720.jpg"
+  },
+  {
+    "ProductId": 38,
+    "ProductName": "Magnets",
+    "description": "Colorful round fridge magnets - pack of 10.",
+    "price": 50,
+    "image": "https://cdn.pixabay.com/photo/2014/04/03/11/50/magnet-311651_960_720.png"
+  },
+  {
+    "ProductId": 39,
+    "ProductName": "Tack It Reusable Adhesive",
+    "description": "Multipurpose reusable adhesive for posters.",
+    "price": 40,
+    "image": "https://cdn.pixabay.com/photo/2018/05/17/15/36/sticky-3407534_960_720.jpg"
+  },
+  {
+    "ProductId": 40,
+    "ProductName": "Drawing Compass",
+    "description": "Precision metal compass for geometry.",
+    "price": 95,
+    "image": "https://cdn.pixabay.com/photo/2013/07/12/12/58/compass-146289_960_720.png"
+  },
+  {
+    "ProductId": 41,
+    "ProductName": "Brush Pens",
+    "description": "Set of 12 brush tip pens for art.",
+    "price": 299,
+    "image": "https://cdn.pixabay.com/photo/2020/04/03/14/11/pen-4997033_960_720.jpg"
+  },
+  {
+    "ProductId": 42,
+    "ProductName": "Metal Scale",
+    "description": "30cm stainless steel measuring scale.",
+    "price": 45,
+    "image": "https://cdn.pixabay.com/photo/2012/04/13/13/13/scale-32077_960_720.png"
+  },
+  {
+    "ProductId": 43,
+    "ProductName": "Mini Whiteboard",
+    "description": "Small magnetic whiteboard for desk.",
+    "price": 220,
+    "image": "https://cdn.pixabay.com/photo/2016/10/23/13/19/whiteboard-1767485_960_720.jpg"
+  },
+  {
+    "ProductId": 44,
+    "ProductName": "Desk Mat",
+    "description": "PU leather writing desk pad.",
+    "price": 450,
+    "image": "https://cdn.pixabay.com/photo/2017/08/10/03/47/desk-2618262_960_720.jpg"
+  },
+  {
+    "ProductId": 45,
+    "ProductName": "Sticky White Labels",
+    "description": "Printable A4 sticker labels.",
+    "price": 90,
+    "image": "https://cdn.pixabay.com/photo/2016/10/01/15/01/label-1706014_960_720.jpg"
+  },
+  {
+    "ProductId": 46,
+    "ProductName": "Velcro Cable Ties",
+    "description": "Reusable velcro ties for organizing cables.",
+    "price": 60,
+    "image": "https://cdn.pixabay.com/photo/2019/03/21/15/14/velcro-4071716_960_720.jpg"
+  },
+  {
+    "ProductId": 47,
+    "ProductName": "Pen Eraser",
+    "description": "Eraser specifically for removing ink marks.",
+    "price": 20,
+    "image": "https://cdn.pixabay.com/photo/2022/02/17/14/24/eraser-7018677_960_720.jpg"
+  },
+  {
+    "ProductId": 48,
+    "ProductName": "Letter Opener",
+    "description": "Plastic handle sharp edge letter opener.",
+    "price": 55,
+    "image": "https://cdn.pixabay.com/photo/2016/11/29/10/07/letter-opener-1867370_960_720.jpg"
+  },
+  {
+    "ProductId": 49,
+    "ProductName": "Index Cards",
+    "description": "Pack of 100 ruled 3x5 index cards.",
+    "price": 70,
+    "image": "https://cdn.pixabay.com/photo/2019/03/26/20/56/notecards-4084470_960_720.jpg"
+  },
+  {
+    "ProductId": 50,
+    "ProductName": "Clipboard Folder",
+    "description": "Multi-function clipboard folder with pen holder.",
+    "price": 195,
+    "image": "https://cdn.pixabay.com/photo/2022/01/08/15/39/clipboard-6922803_960_720.jpg"
+  }
+]

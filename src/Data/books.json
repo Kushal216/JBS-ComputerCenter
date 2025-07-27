@@ -1,0 +1,202 @@
+[
+  {
+    "BookId": 1,
+    "Title": "To Kill a Mockingbird",
+    "Author": "Harper Lee",
+    "description": "A novel about the serious issues of rape and racial inequality.",
+    "price": 350,
+    "image": "https://covers.openlibrary.org/b/id/8228691-L.jpg"
+  },
+  {
+    "BookId": 2,
+    "Title": "1984",
+    "Author": "George Orwell",
+    "description": "A dystopian novel set in a totalitarian society under constant surveillance.",
+    "price": 300,
+    "image": "https://covers.openlibrary.org/b/id/153541-L.jpg"
+  },
+  {
+    "BookId": 3,
+    "Title": "Pride and Prejudice",
+    "Author": "Jane Austen",
+    "description": "A romantic novel that explores the issues of marriage, morality, and misunderstandings.",
+    "price": 280,
+    "image": "https://covers.openlibrary.org/b/id/8225635-L.jpg"
+  },
+  {
+    "BookId": 4,
+    "Title": "The Great Gatsby",
+    "Author": "F. Scott Fitzgerald",
+    "description": "A critique of the American Dream set in the 1920s.",
+    "price": 320,
+    "image": "https://covers.openlibrary.org/b/id/7352164-L.jpg"
+  },
+  {
+    "BookId": 5,
+    "Title": "The Catcher in the Rye",
+    "Author": "J.D. Salinger",
+    "description": "A story about adolescent alienation and loss of innocence.",
+    "price": 290,
+    "image": "https://covers.openlibrary.org/b/id/8231856-L.jpg"
+  },
+  {
+    "BookId": 6,
+    "Title": "Moby-Dick",
+    "Author": "Herman Melville",
+    "description": "An epic sea story of Captain Ahab’s voyage in pursuit of the white whale.",
+    "price": 410,
+    "image": "https://covers.openlibrary.org/b/id/7222246-L.jpg"
+  },
+  {
+    "BookId": 7,
+    "Title": "Jane Eyre",
+    "Author": "Charlotte Brontë",
+    "description": "A strong narrative of an orphan girl’s growth and moral development.",
+    "price": 340,
+    "image": "https://covers.openlibrary.org/b/id/8225290-L.jpg"
+  },
+  {
+    "BookId": 8,
+    "Title": "Animal Farm",
+    "Author": "George Orwell",
+    "description": "A political allegory about a group of animals rebelling against their human farmer.",
+    "price": 220,
+    "image": "https://covers.openlibrary.org/b/id/153541-S.jpg"
+  },
+  {
+    "BookId": 9,
+    "Title": "Little Women",
+    "Author": "Louisa May Alcott",
+    "description": "A coming-of-age story about the four March sisters.",
+    "price": 310,
+    "image": "https://covers.openlibrary.org/b/id/8486190-L.jpg"
+  },
+  {
+    "BookId": 10,
+    "Title": "Brave New World",
+    "Author": "Aldous Huxley",
+    "description": "A futuristic novel about a genetically engineered society.",
+    "price": 330,
+    "image": "https://covers.openlibrary.org/b/id/8225261-L.jpg"
+  },
+  {
+    "BookId": 11,
+    "Title": "Crime and Punishment",
+    "Author": "Fyodor Dostoevsky",
+    "description": "A psychological study of guilt and redemption.",
+    "price": 380,
+    "image": "https://covers.openlibrary.org/b/id/8225288-L.jpg"
+  },
+  {
+    "BookId": 12,
+    "Title": "Wuthering Heights",
+    "Author": "Emily Brontë",
+    "description": "A gothic tale of love and revenge set on the Yorkshire moors.",
+    "price": 300,
+    "image": "https://covers.openlibrary.org/b/id/8225631-L.jpg"
+  },
+  {
+    "BookId": 13,
+    "Title": "Frankenstein",
+    "Author": "Mary Shelley",
+    "description": "A scientist creates a monster, with tragic consequences.",
+    "price": 290,
+    "image": "https://covers.openlibrary.org/b/id/7222241-L.jpg"
+  },
+  {
+    "BookId": 14,
+    "Title": "The Hobbit",
+    "Author": "J.R.R. Tolkien",
+    "description": "A fantasy novel about the adventures of Bilbo Baggins.",
+    "price": 400,
+    "image": "https://covers.openlibrary.org/b/id/6979861-L.jpg"
+  },
+  {
+    "BookId": 15,
+    "Title": "The Alchemist",
+    "Author": "Paulo Coelho",
+    "description": "A young shepherd's journey to discover his personal legend.",
+    "price": 350,
+    "image": "https://covers.openlibrary.org/b/id/8771284-L.jpg"
+  },
+  {
+    "BookId": 16,
+    "Title": "Great Expectations",
+    "Author": "Charles Dickens",
+    "description": "The growth and personal development of an orphan named Pip.",
+    "price": 360,
+    "image": "https://covers.openlibrary.org/b/id/8225586-L.jpg"
+  },
+  {
+    "BookId": 17,
+    "Title": "The Picture of Dorian Gray",
+    "Author": "Oscar Wilde",
+    "description": "A man remains young while his portrait ages.",
+    "price": 280,
+    "image": "https://covers.openlibrary.org/b/id/7925636-L.jpg"
+  },
+  {
+    "BookId": 18,
+    "Title": "Dracula",
+    "Author": "Bram Stoker",
+    "description": "A horror classic introducing the character of Count Dracula.",
+    "price": 310,
+    "image": "https://covers.openlibrary.org/b/id/8225591-L.jpg"
+  },
+  {
+    "BookId": 19,
+    "Title": "A Tale of Two Cities",
+    "Author": "Charles Dickens",
+    "description": "A historical novel set during the French Revolution.",
+    "price": 370,
+    "image": "https://covers.openlibrary.org/b/id/7222162-L.jpg"
+  },
+  {
+    "BookId": 20,
+    "Title": "Les Misérables",
+    "Author": "Victor Hugo",
+    "description": "An epic tale of justice, love, and redemption.",
+    "price": 450,
+    "image": "https://covers.openlibrary.org/b/id/7222240-L.jpg"
+  },
+  {
+    "BookId": 21,
+    "Title": "Don Quixote",
+    "Author": "Miguel de Cervantes",
+    "description": "The adventures of a deluded knight and his loyal squire.",
+    "price": 480,
+    "image": "https://covers.openlibrary.org/b/id/8235085-L.jpg"
+  },
+  {
+    "BookId": 22,
+    "Title": "The Count of Monte Cristo",
+    "Author": "Alexandre Dumas",
+    "description": "A gripping tale of betrayal and revenge.",
+    "price": 420,
+    "image": "https://covers.openlibrary.org/b/id/8114159-L.jpg"
+  },
+  {
+    "BookId": 23,
+    "Title": "Fahrenheit 451",
+    "Author": "Ray Bradbury",
+    "description": "A dystopian future where books are outlawed.",
+    "price": 310,
+    "image": "https://covers.openlibrary.org/b/id/10416340-L.jpg"
+  },
+  {
+    "BookId": 24,
+    "Title": "The Stranger",
+    "Author": "Albert Camus",
+    "description": "A philosophical novel about absurdism and detachment.",
+    "price": 290,
+    "image": "https://covers.openlibrary.org/b/id/8648422-L.jpg"
+  },
+  {
+    "BookId": 25,
+    "Title": "The Road",
+    "Author": "Cormac McCarthy",
+    "description": "A post-apocalyptic story of survival and fatherly love.",
+    "price": 330,
+    "image": "https://covers.openlibrary.org/b/id/8281995-L.jpg"
+  }
+]

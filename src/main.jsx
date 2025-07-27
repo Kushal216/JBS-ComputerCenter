@@ -12,7 +12,6 @@ import {
 
 import { Provider } from "react-redux";
 import store from "./Store/store.js";
-import AddProduct from "./pages/AddProduct.jsx";
 import {
   AuthLayout,
   Home,
@@ -52,7 +51,6 @@ const router = createBrowserRouter(
       />
       <Route path="about" element={<About />} />
       <Route path="profile" element={<Profile />} />
-      <Route path="add" element={<AddProduct />} />
       <Route path="services" element={<Services />} />
       <Route path="contact" element={<Contact />} />
       <Route path="*" element={<div>404 Not Found</div>} />
